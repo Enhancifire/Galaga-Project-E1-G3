@@ -41,7 +41,7 @@ class Laser:
 
     def draw(self, window):
         window.blit(self.img, (self.x, self.y))
-    
+
     def move(self, vel):
         self.y += vel
 
@@ -68,7 +68,7 @@ class Ship:
         window.blit(self.ship_img, (self.x, self.y))
         for laser in self.lasers:
             laser.draw(window)
-    
+
     def move_lasers(self, vel, obj):
         self.cooldown()
         for laser in self.lasers:
@@ -111,7 +111,7 @@ class Player(Ship):
             laser.move(vel)
             if laser.off_screen(HEIGHT):
                 self.lasers.remove(laser)
-            else: 
+            else:
                 for obj in objs:
                     if laser.collision(obj):
                         objs.remove(obj)
@@ -190,7 +190,7 @@ def main():
 
         for enemy in enemies:
             enemy.draw(WIN)
- 
+
         player.draw(WIN)
 
         if lost:
@@ -212,7 +212,7 @@ def main():
                 run = False
             else:
                 continue
-        
+
         if len(enemies) == 0:
             level += 1
             wave_length += 5
@@ -221,11 +221,11 @@ def main():
                 enemy = Enemy(random.randrange(100, WIDTH-100), random.randrange(-1500, -100), random.choice(["red", "blue", "green"]))
                 enemies.append(enemy)
 
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-            
+
         #------------------------Rohan-------------------------------------------------------#
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a] and player.x - player_vel > 0: #Left
@@ -284,8 +284,8 @@ def main():
                 lives -= 1
                 enemies.remove(enemy)
 
-            
-        
+
+
         player.move_lasers(-player_laser_vel, enemies)
 
 
@@ -318,7 +318,7 @@ def menu():
     # on which text is drawn on it.
     start_text = main_font.render("Start Game", 3, (255, 255, 255))
 
-    
+
 
 
     while True:
@@ -333,7 +333,7 @@ def menu():
         display_surface.blit(BG, (0,0))
         display_surface.blit(start_text, ((X//2) - (start_text.get_width()//2), Y//2))
         display_surface.blit(image, ((WIDTH//2 - image.get_width()//2), (HEIGHT//6) ))
-        
+
 
 
         # iterate over the list of Event objects
